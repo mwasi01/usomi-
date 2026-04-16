@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Usomi | CNA e-Learning & Exam Platform - iPay Payments</title>
+  <!-- Font Awesome 6 (free icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      background: #f4fbf7;
+      color: #1a2e2a;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* container */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem;
+    }
+
+    /* header / navbar */
+    .header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      background: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 60px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .logo h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #0b5e2e, #2b7a4b);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .logo p {
+      font-size: 0.75rem;
+      color: #2c5f2d;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #2d5a3b;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #00a33c;
+    }
+
+    /* iPay Payment Button - distinctive style */
+    .ipay-card {
+      background: linear-gradient(135deg, #1a4d2a, #2e7d32);
+      border-radius: 50px;
+      padding: 0.4rem 0.8rem 0.4rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .ipay-btn {
+      background-color: #ff6b00;
+      border: none;
+      padding: 8px 22px;
+      border-radius: 40px;
+      font-weight: bold;
+      font-size: 0.95rem;
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .ipay-btn i {
+      font-size: 1rem;
+    }
+
+    .ipay-btn:hover {
+      background-color: #e55a00;
+      transform: scale(1.02);
+    }
+
+    .till-number {
+      font-weight: 800;
+      font-size: 1rem;
+      background: white;
+      padding: 4px 12px;
+      border-radius: 30px;
+      color: #1e4620;
+      letter-spacing: 1px;
+    }
+
+    /* Hero section */
+    .hero {
+      background: linear-gradient(120deg, #d9f0e3 0%, #c0e0ce 100%);
+      border-radius: 32px;
+      padding: 2rem 2rem;
+      margin-bottom: 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .hero-text h2 {
+      font-size: 2rem;
+      color: #154f1f;
+    }
+
+    .hero-text p {
+      font-size: 1.1rem;
+      max-width: 550px;
+      margin-top: 0.5rem;
+    }
+
+    .badge {
+      background: #1f6e43;
+      color: white;
+      border-radius: 40px;
+      padding: 0.4rem 1rem;
+      font-size: 0.8rem;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+
+    /* section titles */
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 2rem 0 1.2rem 0;
+      border-left: 7px solid #ff6b00;
+      padding-left: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* MODULES GRID (15 cards) */
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.3rem;
+      margin-bottom: 2rem;
+    }
+
+    .module-card {
+      background: white;
+      border-radius: 28px;
+      padding: 1.2rem;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+      transition: 0.25s ease;
+      cursor: pointer;
+      border: 1px solid #ddebe2;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .module-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 30px rgba(0,0,0,0.1);
+      border-color: #ff6b00;
+    }
+
+    .module-icon {
+      background: #e0f0e6;
+      width: 52px;
+      height: 52px;
+      border-radius: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: #1f6e43;
+    }
+
+    .module-info h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .module-info p {
+      font-size: 0.7rem;
+      color: #5f7868;
+    }
+
+    /* Papers area (dynamic rows/columns) */
+    .papers-area {
+      background: #ffffffea;
+      backdrop-filter: blur(2px);
+      border-radius: 32px;
+      margin: 1rem 0 2rem 0;
+      padding: 1.8rem;
+      border: 1px solid #cae3d4;
+      display: none;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.03);
+    }
+
+    .papers-area.active {
+      display: block;
+      animation: fadeSlide 0.3s ease;
+    }
+
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(-10px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    .papers-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      margin-bottom: 1.2rem;
+      border-bottom: 2px dashed #b9d8c5;
+      padding-bottom: 0.7rem;
+    }
+
+    .close-papers {
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: #b1624b;
+    }
+
+    /* papers grid - many rows & columns */
+    .papers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .paper-item {
+      background: #fffaf0;
+      padding: 0.9rem 1rem;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: 0.1s;
+      border-left: 6px solid #ff6b00;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .paper-item i {
+      font-size: 1.5rem;
+      color: #2c7a47;
+    }
+
+    .paper-details {
+      flex: 1;
+    }
+
+    .paper-title {
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .paper-meta {
+      font-size: 0.7rem;
+      color: #6e7b73;
+    }
+
+    .pay-access-btn {
+      background-color: #ff6b00;
+      border: none;
+      color: white;
+      padding: 5px 12px;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .pay-access-btn:disabled {
+      background-color: #9ec0a8;
+      cursor: not-allowed;
+    }
+
+    /* library section (books) */
+    .library-section {
+      margin: 2rem 0 2rem 0;
+      background: #fef8e7;
+      border-radius: 32px;
+      padding: 1.8rem;
+    }
+
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.3rem;
+      margin-top: 1rem;
+    }
+
+    .book-card {
+      background: white;
+      border-radius: 24px;
+      padding: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.05);
+      transition: 0.2s;
+    }
+
+    .book-icon {
+      font-size: 2rem;
+      color: #c97e2a;
+    }
+
+    .book-info h4 {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .btn-access {
+      background: #ff6b00;
+      border: none;
+      padding: 5px 14px;
+      border-radius: 30px;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-access:disabled {
+      background: #b0c7b5;
+      cursor: default;
+    }
+
+    /* add paper row button */
+    .add-paper-wrapper {
+      margin-top: 1.5rem;
+      text-align: right;
+    }
+
+    .add-paper-btn {
+      background: #2c6e9e;
+      border: none;
+      color: white;
+      padding: 6px 20px;
+      border-radius: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    footer {
+      margin-top: 2.5rem;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.8rem;
+      color: #3a5a4e;
+      border-top: 1px solid #cde0d6;
+    }
+
+    /* iPay Modal Overlay (simulated iPay redirect info) */
+    .ipay-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .ipay-modal-content {
+      background: white;
+      max-width: 450px;
+      width: 90%;
+      border-radius: 32px;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .ipay-logo {
+      background: #ff6b00;
+      width: 70px;
+      height: 70px;
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+    }
+
+    .ipay-logo i {
+      font-size: 2.5rem;
+      color: white;
+    }
+
+    .ipay-btn-large {
+      background: #ff6b00;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 60px;
+      font-weight: bold;
+      width: 100%;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        padding: 1rem;
+      }
+      .header {
+        flex-direction: column;
+        align-items: start;
+        gap: 0.8rem;
+        border-radius: 30px;
+      }
+      .hero-text h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Header with navigation and iPay payment gateway -->
+  <div class="header">
+    <div class="logo">
+      <h1><i class="fas fa-chalkboard-user"></i> Usomi</h1>
+      <p>CNA training • Exams • iPay Secure Payments</p>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="#" id="libraryNavBtn">📖 Library</a>
+      <a href="#" id="dashboardNavBtn">📊 Dashboard</a>
+    </div>
+    <div class="ipay-card">
+      <i class="fas fa-shield-alt" style="color:#ffd700; font-size:1.2rem;"></i>
+      <span class="till-number">Till: 5397736</span>
+      <button class="ipay-btn" id="globaliPayBtn"><i class="fas fa-credit-card"></i> Pay via iPay</button>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-text">
+      <h2>👩‍🏫 Nurse Lecturer + iPay Payments</h2>
+      <p>Access 15+ CNA modules, mock exams, video tutorials & nursing books. Secure payments via iPay Gateway (M-Pesa, Airtel Money, Cards).</p>
+      <span class="badge"><i class="fas fa-shield-alt"></i> iPay Secure | Till 5397736</span>
+    </div>
+    <div><i class="fas fa-laptop-code" style="font-size: 3.8rem; color:#1f6e43;"></i></div>
+  </div>
+
+  <!-- 15 MODULES SECTION -->
+  <div class="section-title"><i class="fas fa-layer-group"></i> 📘 CNA Modules (15 topics)</div>
+  <div class="modules-grid" id="modulesGrid"></div>
+
+  <!-- Dynamic papers container (shows after module click) -->
+  <div id="papersArea" class="papers-area">
+    <div class="papers-header">
+      <h3 id="currentModuleTitle">📁 Module: <span>---</span></h3>
+      <button class="close-papers" id="closePapersBtn"><i class="fas fa-times-circle"></i></button>
+    </div>
+    <div id="papersGridContainer" class="papers-grid">
+      <!-- exam papers injected -->
+    </div>
+    <div class="add-paper-wrapper" id="addPaperBtnWrapper"></div>
+  </div>
+
+  <!-- LIBRARY (books) section -->
+  <div class="section-title" id="librarySectionTitle"><i class="fas fa-archive"></i> 📚 Usomi Library (Books & References)</div>
+  <div class="library-section" id="librarySection">
+    <div class="books-grid" id="booksGrid"></div>
+    <p style="margin-top: 1rem; font-size:0.75rem;"><i class="fas fa-plus-circle"></i> New books added regularly. Pay via iPay (KES 100 per book).</p>
+  </div>
+
+  <footer>
+    <p>© 2025 Usomi — Empowering Kenyan nurses. Secure payments by iPay | Till 5397736 | M-Pesa, Airtel Money, Cards accepted</p>
+  </footer>
+</div>
+
+<!-- iPay Payment Modal (simulates iPay checkout) -->
+<div id="ipayModal" class="ipay-modal">
+  <div class="ipay-modal-content">
+    <div class="ipay-logo">
+      <i class="fas fa-credit-card"></i>
+    </div>
+    <h3>iPay Secure Checkout</h3>
+    <p style="margin: 0.8rem 0;">You are about to pay <strong id="ipayAmountDisplay">KES 50</strong> via iPay Gateway</p>
+    <p style="font-size: 0.85rem; background: #f0f2f5; padding: 0.5rem; border-radius: 12px;">
+      <i class="fas fa-check-circle" style="color:#00b341;"></i> Accepts: M-Pesa, Airtel Money, Visa/Mastercard
+    </p>
+    <button id="proceediPayBtn" class="ipay-btn-large"><i class="fas fa-lock"></i> Proceed to iPay</button>
+    <button id="closeiPayModal" style="background: none; border: none; margin-top: 0.8rem; color: #888; cursor: pointer;">Cancel</button>
+  </div>
+</div>
+
+<script>
+  // ---------- DATA ----------
+  // 15 Modules (CNA curriculum)
+  const moduleNames = [
+    "Introduction to CNA & Role", "Basic Nursing Skills", "Patient Safety & Mobility", "Infection Control",
+    "Vital Signs Monitoring", "Personal Care & Hygiene", "Nutrition & Hydration", "Mental Health & Communication",
+    "Restorative Care", "Legal & Ethical Issues", "Emergency Procedures", "Chronic Conditions Care",
+    "End of Life Care", "Documentation & Reporting", "Clinical Practicum Prep"
+  ];
+
+  // Papers store: each module has array of { id, title, type, unlocked }
+  let modulePapers = {};
+
+  // Library books array
+  let libraryBooks = [];
+
+  // iPay integration: store pending payment details
+  let pendingPayment = {
+    type: null,      // 'paper' or 'book'
+    moduleIdx: null,
+    paperIdx: null,
+    bookIdx: null,
+    amount: 50,
+    itemName: ''
+  };
+
+  // Helper: load/save to localStorage
+  function loadData() {
+    const savedPapers = localStorage.getItem('usomi_modulePapers_full');
+    if (savedPapers) {
+      try {
+        modulePapers = JSON.parse(savedPapers);
+      } catch(e) { console.warn(e); }
+    }
+    // initialize default papers for any missing module
+    for (let i = 0; i < moduleNames.length; i++) {
+      if (!modulePapers[i] || modulePapers[i].length === 0) {
+        let defaultPapers = [];
+        if (i === 0) defaultPapers = [{ id: "p0_1", title: "CNA Role & Ethics Mock Exam", type: "exam", unlocked: false }, { id: "p0_2", title: "Introductory Video Lecture", type: "video", unlocked: false }];
+        else if (i === 1) defaultPapers = [{ id: "p1_1", title: "Basic Nursing Skills Quiz", type: "exam", unlocked: false }, { id: "p1_2", title: "Hand Hygiene Demonstration", type: "video", unlocked: false }, { id: "p1_3", title: "Skills Checklist", type: "exam", unlocked: false }];
+        else if (i === 2) defaultPapers = [{ id: "p2_1", title: "Patient Transfer Techniques", type: "video", unlocked: false }, { id: "p2_2", title: "Fall Prevention Exam", type: "exam", unlocked: false }];
+        else defaultPapers = [
+          { id: `p${i}_a`, title: `${moduleNames[i]} - Practice Test`, type: "exam", unlocked: false },
+          { id: `p${i}_b`, title: `${moduleNames[i]} - Video Tutorial`, type: "video", unlocked: false },
+          { id: `p${i}_c`, title: `${moduleNames[i]} - Advanced Q&A`, type: "exam", unlocked: false }
+        ];
+        modulePapers[i] = defaultPapers;
+      }
+    }
+    
+    const savedBooks = localStorage.getItem('usomi_libraryBooks_full');
+    if (savedBooks) {
+      try {
+        libraryBooks = JSON.parse(savedBooks);
+      } catch(e) {}
+    }
+    if (!libraryBooks.length) {
+      libraryBooks = [
+        { id: "book1", title: "CNA Fundamentals (Kenya Edition)", author: "Usomi Team", unlocked: false, icon: "fa-book-medical" },
+        { id: "book2", title: "Nursing Procedures & Checklists", author: "MoH Reference", unlocked: false, icon: "fa-notes-medical" },
+        { id: "book3", title: "NCLEX/CNA Exam Prep 2025", author: "Nurse Eli", unlocked: false, icon: "fa-graduation-cap" },
+        { id: "book4", title: "Communication in Healthcare", author: "Dr. Akinyi", unlocked: false, icon: "fa-comments" },
+        { id: "book5", title: "Emergency Nursing Guide", author: "Red Cross KE", unlocked: false, icon: "fa-truck-medical" }
+      ];
+    }
+    saveAllData();
+  }
+
+  function saveAllData() {
+    localStorage.setItem('usomi_modulePapers_full', JSON.stringify(modulePapers));
+    localStorage.setItem('usomi_libraryBooks_full', JSON.stringify(libraryBooks));
+  }
+
+  // Render 15 modules
+  function renderModules() {
+    const grid = document.getElementById('modulesGrid');
+    grid.innerHTML = '';
+    moduleNames.forEach((name, idx) => {
+      const card = document.createElement('div');
+      card.className = 'module-card';
+      card.setAttribute('data-module-idx', idx);
+      card.innerHTML = `
+        <div class="module-icon"><i class="fas fa-stethoscope"></i></div>
+        <div class="module-info">
+          <h3>${escapeHtml(name)}</h3>
+          <p>${modulePapers[idx]?.length || 0} papers • click to view</p>
+        </div>
+      `;
+      card.addEventListener('click', () => openModulePapers(idx));
+      grid.appendChild(card);
+    });
+  }
+
+  let currentModule = null;
+  function openModulePapers(moduleIdx) {
+    currentModule = moduleIdx;
+    const papersArea = document.getElementById('papersArea');
+    document.querySelector('#currentModuleTitle span').innerText = moduleNames[moduleIdx];
+    renderPapersForModule(moduleIdx);
+    papersArea.classList.add('active');
+    papersArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function renderPapersForModule(moduleIdx) {
+    const container = document.getElementById('papersGridContainer');
+    const papers = modulePapers[moduleIdx] || [];
+    if (papers.length === 0) {
+      container.innerHTML = `<div style="grid-column:1/-1; text-align:center;">📭 No exams yet. Use "Add new" button below.</div>`;
+    } else {
+      container.innerHTML = '';
+      papers.forEach((paper, paperIndex) => {
+        const paperDiv = document.createElement('div');
+        paperDiv.className = 'paper-item';
+        const iconType = paper.type === 'exam' ? 'fa-file-alt' : 'fa-video';
+        const statusLabel = paper.unlocked ? '<span style="color:#2b7a4b;"><i class="fas fa-unlock-alt"></i> Unlocked</span>' : '<span style="color:#bc6f1e;"><i class="fas fa-lock"></i> Locked (KES 50)</span>';
+        const actionBtn = paper.unlocked 
+          ? `<button class="pay-access-btn" style="background:#6c757d;" disabled><i class="fas fa-check"></i> Access</button>` 
+          : `<button class="pay-access-btn unlock-paper-btn" data-module="${moduleIdx}" data-paperidx="${paperIndex}">🔓 Pay via iPay</button>`;
+        paperDiv.innerHTML = `
+          <i class="fas ${iconType}"></i>
+          <div class="paper-details">
+            <div class="paper-title">${escapeHtml(paper.title)} <span style="font-size:0.65rem;">(${paper.type})</span></div>
+            <div class="paper-meta">${statusLabel}</div>
+          </div>
+          ${actionBtn}
+        `;
+        container.appendChild(paperDiv);
+      });
+      // attach iPay payment events
+      document.querySelectorAll('.unlock-paper-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const modIdx = parseInt(btn.getAttribute('data-module'));
+          const papIdx = parseInt(btn.getAttribute('data-paperidx'));
+          const paperTitle = modulePapers[modIdx][papIdx]?.title || 'Exam';
+          initiateiPayPayment('paper', modIdx, papIdx, null, 50, paperTitle);
+        });
+      });
+    }
+    // Add "Add new paper" button
+    const wrapper = document.getElementById('addPaperBtnWrapper');
+    wrapper.innerHTML = `<button id="dynamicAddPaperBtn" class="add-paper-btn"><i class="fas fa-plus-circle"></i> + Add new exam / video (new row)</button>`;
+    document.getElementById('dynamicAddPaperBtn')?.addEventListener('click', () => {
+      if (currentModule !== null) {
+        let newTitle = prompt("Enter exam/paper/video title:", "New CNA Practice Test");
+        if (newTitle) {
+          let newType = confirm("OK = EXAM, Cancel = VIDEO") ? "exam" : "video";
+          modulePapers[currentModule].push({
+            id: Date.now().toString(),
+            title: newTitle,
+            type: newType,
+            unlocked: false
+          });
+          saveAllData();
+          renderPapersForModule(currentModule);
+        }
+      }
+    });
+  }
+
+  // iPay Payment Integration Function
+  function initiateiPayPayment(type, moduleIdx, paperIdx, bookIdx, amount, itemName) {
+    pendingPayment = {
+      type: type,
+      moduleIdx: moduleIdx,
+      paperIdx: paperIdx,
+      bookIdx: bookIdx,
+      amount: amount,
+      itemName: itemName
+    };
+    
+    // Update modal amount display
+    document.getElementById('ipayAmountDisplay').innerText = `KES ${amount}`;
+    const modal = document.getElementById('ipayModal');
+    modal.style.display = 'flex';
+  }
+
+  // Process iPay payment (simulate redirect to iPay gateway)
+  function processiPayPayment() {
+    const modal = document.getElementById('ipayModal');
+    modal.style.display = 'none';
+    
+    // In a real iPay integration, you would redirect to iPay payment page:
+    // window.location.href = `https://www.ipayafrica.com/payment/checkout?demo=true&...`;
+    
+    // For demonstration, we simulate successful payment and unlock content
+    alert(`🟠 Redirecting to iPay Secure Gateway...\n\nItem: ${pendingPayment.itemName}\nAmount: KES ${pendingPayment.amount}\nTill: 5397736\n\nAfter payment, you'll be redirected back to unlock content.`);
+    
+    // Simulate iPay callback after 2 seconds (in real scenario, iPay redirects back to your success URL)
+    setTimeout(() => {
+      if (pendingPayment.type === 'paper' && pendingPayment.moduleIdx !== null && pendingPayment.paperIdx !== null) {
+        if (modulePapers[pendingPayment.moduleIdx] && modulePapers[pendingPayment.moduleIdx][pendingPayment.paperIdx]) {
+          modulePapers[pendingPayment.moduleIdx][pendingPayment.paperIdx].unlocked = true;
+          saveAllData();
+          if (currentModule === pendingPayment.moduleIdx) {
+            renderPapersForModule(currentModule);
+          }
+          alert(`✅ Success! "${pendingPayment.itemName}" has been unlocked. Thank you for your payment via iPay.`);
+        }
+      } else if (pendingPayment.type === 'book' && pendingPayment.bookIdx !== null) {
+        if (libraryBooks[pendingPayment.bookIdx]) {
+          libraryBooks[pendingPayment.bookIdx].unlocked = true;
+          saveAllData();
+          renderLibrary();
+          alert(`✅ Success! Book "${pendingPayment.itemName}" has been unlocked.`);
+        }
+      }
+      pendingPayment = { type: null, moduleIdx: null, paperIdx: null, bookIdx: null, amount: 50, itemName: '' };
+    }, 2000);
+  }
+
+  // Library render (many rows/columns)
+  function renderLibrary() {
+    const booksGrid = document.getElementById('booksGrid');
+    booksGrid.innerHTML = '';
+    libraryBooks.forEach((book, idx) => {
+      const bookCard = document.createElement('div');
+      bookCard.className = 'book-card';
+      const lockIcon = book.unlocked ? '<i class="fas fa-unlock-alt" style="color:#2b7a4b;"></i>' : '<i class="fas fa-lock" style="color:#b34b4b;"></i>';
+      const actionBtn = book.unlocked 
+        ? `<button class="btn-access" style="background:#6c757d;" disabled>Read Now</button>` 
+        : `<button class="btn-access unlock-book-btn" data-bookidx="${idx}">📚 Pay via iPay (KES 100)</button>`;
+      bookCard.innerHTML = `
+        <div class="book-icon"><i class="fas ${book.icon}"></i></div>
+        <div class="book-info">
+          <h4>${escapeHtml(book.title)}</h4>
+          <p style="font-size:0.7rem;">${escapeHtml(book.author)}</p>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+            <span style="font-size:0.75rem;">${lockIcon}</span>
+            ${actionBtn}
+          </div>
+        </div>
+      `;
+      booksGrid.appendChild(bookCard);
+    });
+    document.querySelectorAll('.unlock-book-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const bookIndex = parseInt(btn.getAttribute('data-bookidx'));
+        const bookTitle = libraryBooks[bookIndex]?.title || 'Book';
+        initiateiPayPayment('book', null, null, bookIndex, 100, bookTitle);
+      });
+    });
+  }
+
+  // Global iPay button (top-up wallet feature)
+  function globaliPayTopUp() {
+    initiateiPayPayment('wallet', null, null, null, 200, 'Usomi Wallet Top-up');
+  }
+
+  // Modal event listeners
+  document.getElementById('proceediPayBtn')?.addEventListener('click', processiPayPayment);
+  document.getElementById('closeiPayModal')?.addEventListener('click', () => {
+    document.getElementById('ipayModal').style.display = 'none';
+    pendingPayment = { type: null, moduleIdx: null, paperIdx: null, bookIdx: null, amount: 50, itemName: '' };
+  });
+  window.addEventListener('click', (e) => {
+    const modal = document.getElementById('ipayModal');
+    if (e.target === modal) modal.style.display = 'none';
+  });
+
+  document.getElementById('closePapersBtn')?.addEventListener('click', () => {
+    document.getElementById('papersArea').classList.remove('active');
+    currentModule = null;
+  });
+
+  document.getElementById('globaliPayBtn')?.addEventListener('click', globaliPayTopUp);
+
+  // navigation
+  document.getElementById('libraryNavBtn')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('librarySection').scrollIntoView({ behavior: 'smooth' });
+  });
+  document.getElementById('dashboardNavBtn')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    alert("📊 Dashboard: Track your unlocked content. Each module shows unlocked exams. Keep learning!");
+  });
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/[&<>]/g, function(m) {
+      if (m === '&') return '&amp;';
+      if (m === '<') return '&lt;';
+      if (m === '>') return '&gt;';
+      return m;
+    });
+  }
+
+  // init everything
+  loadData();
+  renderModules();
+  renderLibrary();
+</script>
+</body>
+</html>
