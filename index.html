@@ -4,10 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.5">
   <title>Usomi | CNA e-Learning & Exam Platform - PayPal Payments</title>
-  <!-- Font Awesome 6 (free icons) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- PayPal SDK (client-side integration) -->
-  <script src="https://www.paypal.com/sdk/js?client-id=AQ5uLz3HIXdGk7zgc980hVeAqyn2j4MvulVftopvDczx7w&currency=USD" data-sdk-integration-source="button-factory"></script>
   <style>
     * {
       margin: 0;
@@ -29,7 +26,6 @@
       padding: 1.5rem 2rem;
     }
 
-    /* header / navbar */
     .header {
       display: flex;
       flex-wrap: wrap;
@@ -75,7 +71,6 @@
       color: #00a33c;
     }
 
-    /* PayPal header card */
     .paypal-header-card {
       background: linear-gradient(135deg, #003087, #0070ba);
       border-radius: 50px;
@@ -101,10 +96,7 @@
       cursor: pointer;
       transition: 0.2s;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    }
-
-    .paypal-btn-header i {
-      font-size: 1rem;
+      text-decoration: none;
     }
 
     .paypal-btn-header:hover {
@@ -125,7 +117,6 @@
       gap: 4px;
     }
 
-    /* Hero section */
     .hero {
       background: linear-gradient(120deg, #d9f0e3 0%, #c0e0ce 100%);
       border-radius: 32px;
@@ -169,10 +160,9 @@
       gap: 12px;
     }
 
-    /* MODULES GRID */
     .modules-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 1.3rem;
       margin-bottom: 2rem;
     }
@@ -180,20 +170,26 @@
     .module-card {
       background: white;
       border-radius: 28px;
-      padding: 1.2rem;
+      padding: 1.5rem;
       box-shadow: 0 8px 18px rgba(0,0,0,0.05);
       transition: 0.25s ease;
       cursor: pointer;
       border: 1px solid #ddebe2;
       display: flex;
-      align-items: center;
-      gap: 16px;
+      flex-direction: column;
+      gap: 12px;
     }
 
     .module-card:hover {
       transform: translateY(-6px);
       box-shadow: 0 18px 30px rgba(0,0,0,0.1);
       border-color: #0070ba;
+    }
+
+    .module-card-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
     }
 
     .module-icon {
@@ -206,6 +202,7 @@
       justify-content: center;
       font-size: 1.8rem;
       color: #1f6e43;
+      flex-shrink: 0;
     }
 
     .module-info h3 {
@@ -216,6 +213,64 @@
     .module-info p {
       font-size: 0.7rem;
       color: #5f7868;
+    }
+
+    .module-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 4px;
+      flex-wrap: wrap;
+    }
+
+    .btn-view-papers {
+      background: #0070ba;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .btn-view-papers:hover {
+      background: #005fa3;
+    }
+
+    .btn-paypal-module {
+      background: #ffc439;
+      color: #003087;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .btn-paypal-module:hover {
+      background: #f5b830;
+      transform: scale(1.02);
+    }
+
+    .btn-paypal-module.unlocked {
+      background: #6c757d;
+      color: white;
+      cursor: not-allowed;
+      pointer-events: none;
     }
 
     .papers-area {
@@ -295,25 +350,54 @@
       color: #6e7b73;
     }
 
-    .paypal-pay-btn {
+    .paper-actions {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .btn-paper-paypal {
       background-color: #ffc439;
       border: none;
       color: #003087;
-      padding: 5px 12px;
+      padding: 6px 14px;
       border-radius: 40px;
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       font-weight: bold;
       cursor: pointer;
       transition: 0.2s;
       display: flex;
       align-items: center;
       gap: 4px;
+      text-decoration: none;
+      white-space: nowrap;
     }
 
-    .paypal-pay-btn:disabled {
+    .btn-paper-paypal:hover {
+      background-color: #f5b830;
+    }
+
+    .btn-paper-paypal:disabled,
+    .btn-paper-paypal.unlocked {
       background-color: #9ec0a8;
       color: white;
       cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .btn-paper-access {
+      background: #6c757d;
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      cursor: not-allowed;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
     }
 
     .library-section {
@@ -325,7 +409,7 @@
 
     .books-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 1.3rem;
       margin-top: 1rem;
     }
@@ -333,7 +417,7 @@
     .book-card {
       background: white;
       border-radius: 24px;
-      padding: 1.1rem;
+      padding: 1.2rem;
       display: flex;
       align-items: center;
       gap: 1rem;
@@ -351,24 +435,52 @@
       font-weight: 700;
     }
 
-    .btn-access {
+    .book-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .btn-book-paypal {
       background: #ffc439;
       border: none;
-      padding: 5px 14px;
+      padding: 6px 14px;
       border-radius: 30px;
       color: #003087;
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       font-weight: bold;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
+      text-decoration: none;
+      white-space: nowrap;
     }
 
-    .btn-access:disabled {
+    .btn-book-paypal:hover {
+      background-color: #f5b830;
+    }
+
+    .btn-book-paypal.unlocked {
       background: #b0c7b5;
       color: white;
-      cursor: default;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .btn-book-access {
+      background: #6c757d;
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      cursor: not-allowed;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
     }
 
     .add-paper-wrapper {
@@ -380,10 +492,15 @@
       background: #2c6e9e;
       border: none;
       color: white;
-      padding: 6px 20px;
+      padding: 8px 20px;
       border-radius: 40px;
       font-weight: bold;
       cursor: pointer;
+      font-size: 0.85rem;
+    }
+
+    .add-paper-btn:hover {
+      background: #255d87;
     }
 
     footer {
@@ -395,64 +512,24 @@
       border-top: 1px solid #cde0d6;
     }
 
-    /* PayPal Modal */
-    .paypal-modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.65);
+    .payment-status {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      z-index: 1000;
-    }
-
-    .paypal-modal-content {
-      background: white;
-      max-width: 480px;
-      width: 90%;
-      border-radius: 32px;
-      padding: 2rem;
-      text-align: center;
-      box-shadow: 0 20px 30px rgba(0,0,0,0.3);
-    }
-
-    .paypal-logo {
-      background: #003087;
-      width: 70px;
-      height: 70px;
-      border-radius: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1rem;
-      color: white;
-      font-size: 2.5rem;
-    }
-
-    .kes-conversion {
-      background: #f2f2f2;
-      border-radius: 16px;
-      padding: 0.7rem;
-      margin: 1rem 0;
+      gap: 4px;
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 20px;
       font-weight: 600;
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      align-items: center;
     }
 
-    .paypal-button-container {
-      margin-top: 1.2rem;
+    .payment-status.paid {
+      background: #d4edda;
+      color: #155724;
     }
 
-    .cancel-paypal-btn {
-      background: none;
-      border: none;
-      margin-top: 0.8rem;
-      color: #555;
-      cursor: pointer;
-      font-size: 0.9rem;
+    .payment-status.pending {
+      background: #fff3cd;
+      color: #856404;
     }
 
     @media (max-width: 700px) {
@@ -464,13 +541,19 @@
         border-radius: 30px;
       }
       .hero-text h2 { font-size: 1.5rem; }
+      .module-actions {
+        flex-direction: column;
+      }
+      .modules-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <!-- Header with PayPal integration -->
+  <!-- Header -->
   <div class="header">
     <div class="logo">
       <h1><i class="fas fa-chalkboard-user"></i> Usomi</h1>
@@ -483,8 +566,10 @@
     </div>
     <div class="paypal-header-card">
       <i class="fab fa-paypal" style="font-size:1.3rem;"></i>
-      <span class="currency-badge"><i class="fas fa-coins"></i> KES ~129/USD</span>
-      <button class="paypal-btn-header" id="globalPayPalBtn"><i class="fab fa-paypal"></i> Pay with PayPal</button>
+      <span class="currency-badge"><i class="fas fa-shield-alt"></i> Secure Payments</span>
+      <a href="https://www.paypal.com/ncp/payment/SHDPFDZUMMR5U" target="_blank" class="paypal-btn-header">
+        <i class="fab fa-paypal"></i> Pay with PayPal
+      </a>
     </div>
   </div>
 
@@ -492,8 +577,8 @@
   <div class="hero">
     <div class="hero-text">
       <h2>👩‍🏫 Nurse Lecturer + PayPal Checkout</h2>
-      <p>Access 15+ CNA modules, mock exams, video tutorials & nursing books. Pay securely with PayPal (USD converted to KES equivalent).</p>
-      <span class="badge"><i class="fab fa-paypal"></i> PayPal Secure | 1 USD ≈ 129 KES</span>
+      <p>Access 15+ CNA modules, mock exams, video tutorials & nursing books. Pay securely with PayPal using direct payment links.</p>
+      <span class="badge"><i class="fab fa-paypal"></i> PayPal Secure | Direct Payment Links</span>
     </div>
     <div><i class="fas fa-laptop-code" style="font-size: 3.8rem; color:#1f6e43;"></i></div>
   </div>
@@ -516,35 +601,43 @@
   <div class="section-title" id="librarySectionTitle"><i class="fas fa-archive"></i> 📚 Usomi Library (Books & References)</div>
   <div class="library-section" id="librarySection">
     <div class="books-grid" id="booksGrid"></div>
-    <p style="margin-top: 1rem; font-size:0.75rem;"><i class="fas fa-plus-circle"></i> New books added regularly. Pay via PayPal (approx KES 100).</p>
+    <p style="margin-top: 1rem; font-size:0.75rem;"><i class="fas fa-plus-circle"></i> New books added regularly. Pay via PayPal links.</p>
   </div>
 
   <footer>
-    <p>© 2025 Usomi — Empowering Kenyan nurses. Secure payments by PayPal | USD accepted, displayed in KES equivalent (1 USD ≈ 129 KES).</p>
+    <p>© 2025 Usomi — Empowering Kenyan nurses. Secure payments by PayPal | Direct payment links for each module</p>
   </footer>
 </div>
 
-<!-- PayPal Payment Modal (inline checkout) -->
-<div id="paypalModal" class="paypal-modal">
-  <div class="paypal-modal-content">
-    <div class="paypal-logo">
-      <i class="fab fa-paypal"></i>
-    </div>
-    <h3>PayPal Checkout</h3>
-    <p style="margin: 0.8rem 0;">You are paying for <strong id="paypalItemName">item</strong></p>
-    <div class="kes-conversion">
-      <span>🇰🇪 KES <span id="kesAmountDisplay">0</span></span>
-      <span style="font-size:0.8rem;">(≈ USD <span id="usdAmountDisplay">0.00</span>)</span>
-    </div>
-    <div id="paypalButtonContainer" class="paypal-button-container"></div>
-    <button id="cancelPayPalModal" class="cancel-paypal-btn"><i class="fas fa-times"></i> Cancel</button>
-  </div>
-</div>
-
 <script>
-  // ---------- DATA & CONSTANTS ----------
-  const USD_TO_KES_RATE = 129; // 1 USD = 129 Kenyan Shillings (approximate)
-  
+  // ---------- PAYPAL PAYMENT LINKS ----------
+  const paypalLinks = {
+    module0: "https://www.paypal.com/ncp/payment/SHDPFDZUMMR5U",  // Introduction to CNA & Role
+    module1: "https://www.paypal.com/ncp/payment/RK36L5XTS5VVQ",  // Basic Nursing Skills
+    module2: "https://www.paypal.com/ncp/payment/AE9HBE3NLNGKG",  // Patient Safety & Mobility
+    module3: "https://www.paypal.com/ncp/payment/BSMWZGMB6AU8W",  // Infection Control
+    module4: "https://www.paypal.com/ncp/payment/BSMWZGMB6AU8W",  // Vital Signs Monitoring (same link as Infection Control)
+  };
+
+  // Fallback links for modules without specific links
+  const fallbackLinks = [
+    "https://www.paypal.com/ncp/payment/SHDPFDZUMMR5U",  // Fallback 1
+    "https://www.paypal.com/ncp/payment/RK36L5XTS5VVQ",  // Fallback 2
+    "https://www.paypal.com/ncp/payment/AE9HBE3NLNGKG",  // Fallback 3
+    "https://www.paypal.com/ncp/payment/BSMWZGMB6AU8W",  // Fallback 4
+  ];
+
+  function getModulePayPalLink(moduleIndex) {
+    const key = 'module' + moduleIndex;
+    if (paypalLinks[key]) {
+      return paypalLinks[key];
+    }
+    // Use fallback links for remaining modules
+    const fallbackIndex = (moduleIndex - 5) % fallbackLinks.length;
+    return fallbackLinks[fallbackIndex];
+  }
+
+  // ---------- DATA ----------
   const moduleNames = [
     "Introduction to CNA & Role", "Basic Nursing Skills", "Patient Safety & Mobility", "Infection Control",
     "Vital Signs Monitoring", "Personal Care & Hygiene", "Nutrition & Hydration", "Mental Health & Communication",
@@ -554,26 +647,23 @@
 
   let modulePapers = {};
   let libraryBooks = [];
-  
-  // Pending PayPal payment state
-  let pendingPayPalPayment = {
-    type: null,       // 'paper' or 'book' or 'wallet'
-    moduleIdx: null,
-    paperIdx: null,
-    bookIdx: null,
-    amountUSD: 0.50,  // default small USD amount
-    itemName: '',
-    kesEquivalent: 0
-  };
+  let paidModules = {}; // Track which modules have been paid for
 
   // ---------- LOCAL STORAGE ----------
   function loadData() {
-    const savedPapers = localStorage.getItem('usomi_modulePapers_paypal');
+    // Load paid modules
+    const savedPaidModules = localStorage.getItem('usomi_paidModules');
+    if (savedPaidModules) {
+      try { paidModules = JSON.parse(savedPaidModules); } catch(e) { console.warn('Error parsing paid modules:', e); }
+    }
+
+    // Load papers
+    const savedPapers = localStorage.getItem('usomi_modulePapers_v3');
     if (savedPapers) {
-      try { modulePapers = JSON.parse(savedPapers); } catch(e) {}
+      try { modulePapers = JSON.parse(savedPapers); } catch(e) { console.warn('Error parsing papers:', e); }
     }
     for (let i = 0; i < moduleNames.length; i++) {
-      if (!modulePapers[i] || modulePapers[i].length === 0) {
+      if (!modulePapers[i] || !Array.isArray(modulePapers[i]) || modulePapers[i].length === 0) {
         let defaultPapers = [];
         if (i === 0) defaultPapers = [{ id: "p0_1", title: "CNA Role & Ethics Mock Exam", type: "exam", unlocked: false }, { id: "p0_2", title: "Introductory Video Lecture", type: "video", unlocked: false }];
         else if (i === 1) defaultPapers = [{ id: "p1_1", title: "Basic Nursing Skills Quiz", type: "exam", unlocked: false }, { id: "p1_2", title: "Hand Hygiene Demonstration", type: "video", unlocked: false }, { id: "p1_3", title: "Skills Checklist", type: "exam", unlocked: false }];
@@ -587,265 +677,324 @@
       }
     }
     
-    const savedBooks = localStorage.getItem('usomi_libraryBooks_paypal');
+    // Load books
+    const savedBooks = localStorage.getItem('usomi_libraryBooks_v3');
     if (savedBooks) {
-      try { libraryBooks = JSON.parse(savedBooks); } catch(e) {}
+      try { libraryBooks = JSON.parse(savedBooks); } catch(e) { console.warn('Error parsing books:', e); }
     }
-    if (!libraryBooks.length) {
+    if (!libraryBooks || !Array.isArray(libraryBooks) || libraryBooks.length === 0) {
       libraryBooks = [
-        { id: "book1", title: "CNA Fundamentals (Kenya Edition)", author: "Usomi Team", unlocked: false, icon: "fa-book-medical" },
-        { id: "book2", title: "Nursing Procedures & Checklists", author: "MoH Reference", unlocked: false, icon: "fa-notes-medical" },
-        { id: "book3", title: "NCLEX/CNA Exam Prep 2025", author: "Nurse Eli", unlocked: false, icon: "fa-graduation-cap" },
-        { id: "book4", title: "Communication in Healthcare", author: "Dr. Akinyi", unlocked: false, icon: "fa-comments" },
-        { id: "book5", title: "Emergency Nursing Guide", author: "Red Cross KE", unlocked: false, icon: "fa-truck-medical" }
+        { id: "book1", title: "CNA Fundamentals (Kenya Edition)", author: "Usomi Team", unlocked: false, icon: "fa-book-medical", paypalLink: "https://www.paypal.com/ncp/payment/SHDPFDZUMMR5U" },
+        { id: "book2", title: "Nursing Procedures & Checklists", author: "MoH Reference", unlocked: false, icon: "fa-notes-medical", paypalLink: "https://www.paypal.com/ncp/payment/RK36L5XTS5VVQ" },
+        { id: "book3", title: "NCLEX/CNA Exam Prep 2025", author: "Nurse Eli", unlocked: false, icon: "fa-graduation-cap", paypalLink: "https://www.paypal.com/ncp/payment/AE9HBE3NLNGKG" },
+        { id: "book4", title: "Communication in Healthcare", author: "Dr. Akinyi", unlocked: false, icon: "fa-comments", paypalLink: "https://www.paypal.com/ncp/payment/BSMWZGMB6AU8W" },
+        { id: "book5", title: "Emergency Nursing Guide", author: "Red Cross KE", unlocked: false, icon: "fa-truck-medical", paypalLink: "https://www.paypal.com/ncp/payment/SHDPFDZUMMR5U" }
       ];
     }
     saveAllData();
   }
 
   function saveAllData() {
-    localStorage.setItem('usomi_modulePapers_paypal', JSON.stringify(modulePapers));
-    localStorage.setItem('usomi_libraryBooks_paypal', JSON.stringify(libraryBooks));
+    localStorage.setItem('usomi_paidModules', JSON.stringify(paidModules));
+    localStorage.setItem('usomi_modulePapers_v3', JSON.stringify(modulePapers));
+    localStorage.setItem('usomi_libraryBooks_v3', JSON.stringify(libraryBooks));
+  }
+
+  function markModuleAsPaid(moduleIndex) {
+    paidModules[moduleIndex] = true;
+    // Also unlock all papers in the module
+    if (modulePapers[moduleIndex]) {
+      modulePapers[moduleIndex].forEach(paper => {
+        paper.unlocked = true;
+      });
+    }
+    saveAllData();
+  }
+
+  function isModulePaid(moduleIndex) {
+    return paidModules[moduleIndex] === true;
   }
 
   // Render modules
   function renderModules() {
     const grid = document.getElementById('modulesGrid');
+    if (!grid) return;
     grid.innerHTML = '';
+    
     moduleNames.forEach((name, idx) => {
       const card = document.createElement('div');
       card.className = 'module-card';
-      card.setAttribute('data-module-idx', idx);
+      const paperCount = (modulePapers[idx] && Array.isArray(modulePapers[idx])) ? modulePapers[idx].length : 0;
+      const paid = isModulePaid(idx);
+      const paypalLink = getModulePayPalLink(idx);
+      
       card.innerHTML = `
-        <div class="module-icon"><i class="fas fa-stethoscope"></i></div>
-        <div class="module-info">
-          <h3>${escapeHtml(name)}</h3>
-          <p>${modulePapers[idx]?.length || 0} papers • click to view</p>
+        <div class="module-card-header">
+          <div class="module-icon"><i class="fas fa-stethoscope"></i></div>
+          <div class="module-info">
+            <h3>${escapeHtml(name)}</h3>
+            <p>${paperCount} papers • ${paid ? '<span style="color:#155724;">✓ Unlocked</span>' : '<span style="color:#856404;">🔒 Locked</span>'}</p>
+          </div>
         </div>
+        <div class="module-actions">
+          <button class="btn-view-papers" data-module="${idx}">
+            <i class="fas fa-folder-open"></i> View Papers
+          </button>
+          ${paid 
+            ? `<span class="btn-paypal-module unlocked"><i class="fas fa-check-circle"></i> Paid</span>`
+            : `<a href="${paypalLink}" target="_blank" class="btn-paypal-module" data-module="${idx}" onclick="handleModulePayment(${idx})">
+                <i class="fab fa-paypal"></i> Pay via PayPal
+              </a>`
+          }
+        </div>
+        <span class="payment-status ${paid ? 'paid' : 'pending'}">
+          <i class="fas ${paid ? 'fa-check-circle' : 'fa-clock'}"></i>
+          ${paid ? 'Module Unlocked' : 'Payment Required'}
+        </span>
       `;
-      card.addEventListener('click', () => openModulePapers(idx));
+      
       grid.appendChild(card);
     });
+
+    // Add event listeners for View Papers buttons
+    document.querySelectorAll('.btn-view-papers').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const moduleIdx = parseInt(this.getAttribute('data-module'));
+        openModulePapers(moduleIdx);
+      });
+    });
+
+    // Add event listeners for module card clicks (except buttons)
+    document.querySelectorAll('.module-card').forEach(card => {
+      card.addEventListener('click', function(e) {
+        // Don't trigger if clicking a button or link
+        if (e.target.closest('button') || e.target.closest('a')) return;
+        const moduleIdx = parseInt(this.querySelector('.btn-view-papers').getAttribute('data-module'));
+        openModulePapers(moduleIdx);
+      });
+    });
+  }
+
+  function handleModulePayment(moduleIndex) {
+    // Mark module as paid when PayPal link is clicked
+    // In a real scenario, you'd verify the payment, but for demo we mark it
+    setTimeout(() => {
+      if (confirm('Did you complete the PayPal payment? Click OK to unlock the module.')) {
+        markModuleAsPaid(moduleIndex);
+        renderModules();
+        if (currentModule === moduleIndex) {
+          renderPapersForModule(moduleIndex);
+        }
+        alert(`✅ Module "${moduleNames[moduleIndex]}" has been unlocked! All papers are now accessible.`);
+      }
+    }, 1000);
   }
 
   let currentModule = null;
   function openModulePapers(moduleIdx) {
     currentModule = moduleIdx;
-    document.querySelector('#currentModuleTitle span').innerText = moduleNames[moduleIdx];
+    const titleSpan = document.querySelector('#currentModuleTitle span');
+    if (titleSpan) titleSpan.innerText = moduleNames[moduleIdx];
     renderPapersForModule(moduleIdx);
-    document.getElementById('papersArea').classList.add('active');
-    document.getElementById('papersArea').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const papersArea = document.getElementById('papersArea');
+    if (papersArea) {
+      papersArea.classList.add('active');
+      papersArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
   function renderPapersForModule(moduleIdx) {
     const container = document.getElementById('papersGridContainer');
+    if (!container) return;
     const papers = modulePapers[moduleIdx] || [];
+    const modulePaid = isModulePaid(moduleIdx);
+    const paypalLink = getModulePayPalLink(moduleIdx);
+    
     if (papers.length === 0) {
-      container.innerHTML = `<div style="grid-column:1/-1; text-align:center;">📭 No exams yet. Use "Add new" below.</div>`;
+      container.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:2rem;">📭 No exams yet. Use "Add new" below.</div>`;
     } else {
       container.innerHTML = '';
       papers.forEach((paper, paperIndex) => {
         const paperDiv = document.createElement('div');
         paperDiv.className = 'paper-item';
         const iconType = paper.type === 'exam' ? 'fa-file-alt' : 'fa-video';
-        const statusLabel = paper.unlocked ? '<span style="color:#2b7a4b;"><i class="fas fa-unlock-alt"></i> Unlocked</span>' : '<span style="color:#bc6f1e;"><i class="fas fa-lock"></i> Locked</span>';
-        const actionBtn = paper.unlocked 
-          ? `<button class="paypal-pay-btn" style="background:#6c757d; color:white;" disabled><i class="fas fa-check"></i> Access</button>` 
-          : `<button class="paypal-pay-btn unlock-paper-paypal" data-module="${moduleIdx}" data-paperidx="${paperIndex}"><i class="fab fa-paypal"></i> Pay (KES 65)</button>`;
+        const isUnlocked = modulePaid || paper.unlocked;
+        
+        const statusLabel = isUnlocked 
+          ? '<span style="color:#2b7a4b;"><i class="fas fa-unlock-alt"></i> Unlocked</span>' 
+          : '<span style="color:#bc6f1e;"><i class="fas fa-lock"></i> Locked</span>';
+        
+        const actionBtn = isUnlocked 
+          ? `<button class="btn-paper-access"><i class="fas fa-check"></i> Access</button>` 
+          : `<a href="${paypalLink}" target="_blank" class="btn-paper-paypal" onclick="handlePaperPayment(${moduleIdx}, ${paperIndex})">
+              <i class="fab fa-paypal"></i> Pay to Unlock
+            </a>`;
+        
         paperDiv.innerHTML = `
           <i class="fas ${iconType}"></i>
           <div class="paper-details">
             <div class="paper-title">${escapeHtml(paper.title)} <span style="font-size:0.65rem;">(${paper.type})</span></div>
             <div class="paper-meta">${statusLabel}</div>
           </div>
-          ${actionBtn}
+          <div class="paper-actions">
+            ${actionBtn}
+          </div>
         `;
         container.appendChild(paperDiv);
       });
-      
-      document.querySelectorAll('.unlock-paper-paypal').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          const modIdx = parseInt(btn.getAttribute('data-module'));
-          const papIdx = parseInt(btn.getAttribute('data-paperidx'));
-          const paperTitle = modulePapers[modIdx][papIdx]?.title || 'Exam';
-          const usdAmount = 0.50; // ~65 KES
-          openPayPalModal('paper', modIdx, papIdx, null, usdAmount, paperTitle);
-        });
-      });
     }
     
+    // Add Paper button
     const wrapper = document.getElementById('addPaperBtnWrapper');
-    wrapper.innerHTML = `<button id="dynamicAddPaperBtn" class="add-paper-btn"><i class="fas fa-plus-circle"></i> + Add new exam / video</button>`;
-    document.getElementById('dynamicAddPaperBtn')?.addEventListener('click', () => {
-      if (currentModule !== null) {
-        let newTitle = prompt("Enter exam/paper/video title:", "New CNA Practice Test");
-        if (newTitle) {
-          let newType = confirm("OK = EXAM, Cancel = VIDEO") ? "exam" : "video";
-          modulePapers[currentModule].push({
-            id: Date.now().toString(),
-            title: newTitle,
-            type: newType,
-            unlocked: false
-          });
+    if (wrapper) {
+      wrapper.innerHTML = `<button id="dynamicAddPaperBtn" class="add-paper-btn"><i class="fas fa-plus-circle"></i> + Add new exam / video</button>`;
+      const addBtn = document.getElementById('dynamicAddPaperBtn');
+      if (addBtn) {
+        addBtn.addEventListener('click', () => {
+          if (currentModule !== null) {
+            let newTitle = prompt("Enter exam/paper/video title:", "New CNA Practice Test");
+            if (newTitle && newTitle.trim()) {
+              let newType = confirm("OK = EXAM, Cancel = VIDEO") ? "exam" : "video";
+              if (!modulePapers[currentModule]) modulePapers[currentModule] = [];
+              modulePapers[currentModule].push({
+                id: 'p_' + Date.now().toString(),
+                title: newTitle.trim(),
+                type: newType,
+                unlocked: isModulePaid(currentModule)
+              });
+              saveAllData();
+              renderPapersForModule(currentModule);
+            }
+          }
+        });
+      }
+    }
+  }
+
+  function handlePaperPayment(moduleIdx, paperIdx) {
+    setTimeout(() => {
+      if (confirm('Did you complete the PayPal payment? Click OK to unlock this paper.')) {
+        if (modulePapers[moduleIdx] && modulePapers[moduleIdx][paperIdx]) {
+          modulePapers[moduleIdx][paperIdx].unlocked = true;
           saveAllData();
-          renderPapersForModule(currentModule);
+          renderPapersForModule(moduleIdx);
+          alert(`✅ Paper unlocked! You can now access "${modulePapers[moduleIdx][paperIdx].title}".`);
         }
       }
-    });
+    }, 1000);
   }
 
   // Render library
   function renderLibrary() {
     const booksGrid = document.getElementById('booksGrid');
+    if (!booksGrid) return;
     booksGrid.innerHTML = '';
+    
     libraryBooks.forEach((book, idx) => {
       const bookCard = document.createElement('div');
       bookCard.className = 'book-card';
-      const lockIcon = book.unlocked ? '<i class="fas fa-unlock-alt" style="color:#2b7a4b;"></i>' : '<i class="fas fa-lock" style="color:#b34b4b;"></i>';
-      const actionBtn = book.unlocked 
-        ? `<button class="btn-access" style="background:#6c757d; color:white;" disabled>Read Now</button>` 
-        : `<button class="btn-access unlock-book-paypal" data-bookidx="${idx}"><i class="fab fa-paypal"></i> Pay (KES 129)</button>`;
+      const isUnlocked = book.unlocked;
+      
       bookCard.innerHTML = `
-        <div class="book-icon"><i class="fas ${book.icon}"></i></div>
-        <div class="book-info">
+        <div class="book-icon"><i class="fas ${escapeHtml(book.icon || 'fa-book')}"></i></div>
+        <div class="book-info" style="flex:1;">
           <h4>${escapeHtml(book.title)}</h4>
           <p style="font-size:0.7rem;">${escapeHtml(book.author)}</p>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
-            <span style="font-size:0.75rem;">${lockIcon}</span>
-            ${actionBtn}
+          <div class="book-actions">
+            ${isUnlocked 
+              ? `<button class="btn-book-access"><i class="fas fa-check"></i> Read Now</button>`
+              : `<a href="${book.paypalLink || 'https://www.paypal.com/ncp/payment/SHDPFDZUMMR5U'}" target="_blank" class="btn-book-paypal" onclick="handleBookPayment(${idx})">
+                  <i class="fab fa-paypal"></i> Pay to Unlock
+                </a>`
+            }
           </div>
+          <span class="payment-status ${isUnlocked ? 'paid' : 'pending'}" style="margin-top:4px;">
+            <i class="fas ${isUnlocked ? 'fa-check-circle' : 'fa-lock'}"></i>
+            ${isUnlocked ? 'Unlocked' : 'Locked'}
+          </span>
         </div>
       `;
       booksGrid.appendChild(bookCard);
     });
-    
-    document.querySelectorAll('.unlock-book-paypal').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const bookIndex = parseInt(btn.getAttribute('data-bookidx'));
-        const bookTitle = libraryBooks[bookIndex]?.title || 'Book';
-        const usdAmount = 1.00; // ~129 KES
-        openPayPalModal('book', null, null, bookIndex, usdAmount, bookTitle);
-      });
-    });
   }
 
-  // ----- PAYPAL INTEGRATION -----
-  function openPayPalModal(type, moduleIdx, paperIdx, bookIdx, usdAmount, itemName) {
-    const kesAmount = Math.round(usdAmount * USD_TO_KES_RATE);
-    pendingPayPalPayment = {
-      type, moduleIdx, paperIdx, bookIdx, amountUSD: usdAmount, itemName, kesEquivalent: kesAmount
-    };
-    
-    document.getElementById('paypalItemName').innerText = itemName;
-    document.getElementById('kesAmountDisplay').innerText = kesAmount;
-    document.getElementById('usdAmountDisplay').innerText = usdAmount.toFixed(2);
-    
-    const modal = document.getElementById('paypalModal');
-    modal.style.display = 'flex';
-    
-    // Clear previous PayPal button and render new one
-    const container = document.getElementById('paypalButtonContainer');
-    container.innerHTML = '';
-    
-    paypal.Buttons({
-      createOrder: function(data, actions) {
-        return actions.order.create({
-          purchase_units: [{
-            description: itemName,
-            amount: {
-              currency_code: 'USD',
-              value: usdAmount.toFixed(2)
-            }
-          }]
-        });
-      },
-      onApprove: function(data, actions) {
-        return actions.order.capture().then(function(details) {
-          // Payment successful
-          handlePayPalSuccess();
-        });
-      },
-      onError: function(err) {
-        console.error('PayPal error:', err);
-        alert('There was an issue with the PayPal transaction. Please try again.');
-        closePayPalModal();
-      }
-    }).render('#paypalButtonContainer');
-  }
-
-  function handlePayPalSuccess() {
-    const payment = pendingPayPalPayment;
-    if (!payment.type) return;
-    
-    if (payment.type === 'paper' && payment.moduleIdx !== null && payment.paperIdx !== null) {
-      if (modulePapers[payment.moduleIdx] && modulePapers[payment.moduleIdx][payment.paperIdx]) {
-        modulePapers[payment.moduleIdx][payment.paperIdx].unlocked = true;
-        saveAllData();
-        if (currentModule === payment.moduleIdx) {
-          renderPapersForModule(currentModule);
+  function handleBookPayment(bookIdx) {
+    setTimeout(() => {
+      if (confirm('Did you complete the PayPal payment? Click OK to unlock this book.')) {
+        if (libraryBooks[bookIdx]) {
+          libraryBooks[bookIdx].unlocked = true;
+          saveAllData();
+          renderLibrary();
+          alert(`✅ Book unlocked! You can now read "${libraryBooks[bookIdx].title}".`);
         }
       }
-    } else if (payment.type === 'book' && payment.bookIdx !== null) {
-      if (libraryBooks[payment.bookIdx]) {
-        libraryBooks[payment.bookIdx].unlocked = true;
-        saveAllData();
-        renderLibrary();
-      }
-    } else if (payment.type === 'wallet') {
-      // Top-up handled generically
+    }, 1000);
+  }
+
+  // ---------- EVENT LISTENERS ----------
+  document.addEventListener('DOMContentLoaded', function() {
+    // Close papers button
+    const closePapersBtn = document.getElementById('closePapersBtn');
+    if (closePapersBtn) {
+      closePapersBtn.addEventListener('click', function() {
+        const papersArea = document.getElementById('papersArea');
+        if (papersArea) papersArea.classList.remove('active');
+        currentModule = null;
+      });
     }
     
-    alert(`✅ Payment successful! "${payment.itemName}" has been unlocked. Thank you for using PayPal.`);
-    closePayPalModal();
-    pendingPayPalPayment = { type: null, moduleIdx: null, paperIdx: null, bookIdx: null, amountUSD: 0.50, itemName: '', kesEquivalent: 0 };
-  }
-
-  function closePayPalModal() {
-    document.getElementById('paypalModal').style.display = 'none';
-    document.getElementById('paypalButtonContainer').innerHTML = '';
-  }
-
-  // Global PayPal top-up button
-  function globalPayPalTopUp() {
-    openPayPalModal('wallet', null, null, null, 2.00, 'Usomi Wallet Top-up (USD 2)');
-  }
-
-  // Event listeners for modal and navigation
-  document.getElementById('cancelPayPalModal')?.addEventListener('click', closePayPalModal);
-  window.addEventListener('click', (e) => {
-    const modal = document.getElementById('paypalModal');
-    if (e.target === modal) closePayPalModal();
-  });
-
-  document.getElementById('closePapersBtn')?.addEventListener('click', () => {
-    document.getElementById('papersArea').classList.remove('active');
-    currentModule = null;
-  });
-
-  document.getElementById('globalPayPalBtn')?.addEventListener('click', globalPayPalTopUp);
-  document.getElementById('libraryNavBtn')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    document.getElementById('librarySection').scrollIntoView({ behavior: 'smooth' });
-  });
-  document.getElementById('dashboardNavBtn')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    alert("📊 Dashboard: Track your unlocked content. Keep learning!");
+    // Navigation
+    const libraryNav = document.getElementById('libraryNavBtn');
+    if (libraryNav) {
+      libraryNav.addEventListener('click', function(e) {
+        e.preventDefault();
+        const librarySection = document.getElementById('librarySection');
+        if (librarySection) librarySection.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+    
+    const dashboardNav = document.getElementById('dashboardNavBtn');
+    if (dashboardNav) {
+      dashboardNav.addEventListener('click', function(e) {
+        e.preventDefault();
+        const totalModules = Object.keys(moduleNames).length;
+        const paidCount = Object.keys(paidModules).filter(k => paidModules[k]).length;
+        const unlockedPapers = Object.values(modulePapers).flat().filter(p => p.unlocked).length;
+        const unlockedBooks = libraryBooks.filter(b => b.unlocked).length;
+        
+        alert(`📊 Your Dashboard\n\n` +
+              `📘 Modules Unlocked: ${paidCount}/${moduleNames.length}\n` +
+              `📄 Papers Accessible: ${unlockedPapers}\n` +
+              `📚 Books Unlocked: ${unlockedBooks}/${libraryBooks.length}\n\n` +
+              `Keep learning and advancing your nursing career! 💪`);
+      });
+    }
+    
+    // Initialize app
+    loadData();
+    renderModules();
+    renderLibrary();
+    console.log('Usomi platform initialized with direct PayPal links');
+    console.log('Module links configured:');
+    console.log('  Module 0 (Intro):', getModulePayPalLink(0));
+    console.log('  Module 1 (Basic Skills):', getModulePayPalLink(1));
+    console.log('  Module 2 (Patient Safety):', getModulePayPalLink(2));
+    console.log('  Module 3 (Infection Control):', getModulePayPalLink(3));
+    console.log('  Module 4 (Vital Signs):', getModulePayPalLink(4));
+    console.log('  Modules 5-14: Using fallback links');
   });
 
   function escapeHtml(str) {
     if (!str) return '';
-    return str.replace(/[&<>]/g, function(m) {
-      if (m === '&') return '&amp;';
-      if (m === '<') return '&lt;';
-      if (m === '>') return '&gt;';
-      return m;
-    });
+    const div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
   }
 
-  // Initialize everything
-  loadData();
-  renderModules();
-  renderLibrary();
+  // Expose functions to global scope for onclick handlers
+  window.handleModulePayment = handleModulePayment;
+  window.handlePaperPayment = handlePaperPayment;
+  window.handleBookPayment = handleBookPayment;
 </script>
 </body>
 </html>
